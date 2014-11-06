@@ -4,13 +4,11 @@ library(caret)
 
 library(extraTrees)
 
-setwd("C:/Users/GALT/Desktop/Forest Cover Type Prediction/code/submissions/New folder")
-
 
 ####################################
 # Train Set
 ####################################
-train.set = read.csv(file='../../../data/train.csv',head=TRUE,sep=",",stringsAsFactors=F)
+train.set = read.csv(file='../data/train.csv',head=TRUE,sep=",",stringsAsFactors=F)
 
 train.set$Soil_Type7 = NULL
 train.set$Soil_Type15 = NULL
@@ -40,7 +38,7 @@ y.train <- train.set[,c("Id","Cover_Type")]
 # Test Set
 ####################################
 
-test.set = read.csv(file='../../../data/test.csv',head=TRUE,sep=",",stringsAsFactors=F)
+test.set = read.csv(file='../data/test.csv',head=TRUE,sep=",",stringsAsFactors=F)
 
 test.set$Soil_Type7 = NULL
 test.set$Soil_Type15 = NULL
@@ -98,7 +96,7 @@ eT_fit <- extraTrees(X.train
 Y_eT[, 2] <- predict(eT_fit, X.test)
 
 
-example = read.csv(file='../../../data/sampleSubmission.csv',head=TRUE,sep=",")
+example = read.csv(file='../data/sampleSubmission.csv',head=TRUE,sep=",")
 
 example$Id <- Y_eT[, 1]
 example$Cover_Type <- as.numeric(Y_eT[, 2])
